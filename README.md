@@ -1,5 +1,7 @@
 # Waste Detection MLOps — [Group Name]
 
+All the informations about project are in the project.md file
+
 **Based Repo**: https://github.com/sinaayyy/project_mlops
 
 
