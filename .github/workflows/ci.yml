@@ -1,3 +1,4 @@
+cat > .github/workflows/ci.yml << 'EOF'
 name: CI
 
 on:
@@ -9,29 +10,48 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: "3.11" }
-      - run: pip install -r requirements.txt
-      - name: Unit tests
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
         run: pytest api/tests/test_unit.py -v
-      - name: Integration test (Docker)
+
+      - name: Run integration test (Docker)
         run: |
           docker compose up -d
-          sleep 15
+          sleep 20
           pytest api/tests/test_integration.py -v
           docker compose down
 
   build-push:
     needs: test
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/login-action@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
-          docker build -t ghcr.io/${{ github.repository }}/waste-api:latest ./api
-          docker push ghcr.io/${{ github.repository }}/waste-api:latest
+
+      - name: Build and push API image
+        run: |
+          IMAGE=ghcr.io/${{ github.repository }}/waste-api
+          docker build -t $IMAGE:latest ./api
+          docker push $IMAGE:latest
+
+      - name: Verify image is pullable
+        run: docker pull ghcr.io/${{ github.repository }}/waste-api:latest
+EOF

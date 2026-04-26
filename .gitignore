@@ -1,9 +1,11 @@
+cat >> .gitignore << 'EOF'
 __pycache__/
 .venv/
 *.pt
 *.db
-logs/
-data/
-mlflow_data/
 *.pyc
 .env
+logs/
+mlflow_data/
+data/
+EOF
