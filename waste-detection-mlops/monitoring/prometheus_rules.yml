@@ -1,0 +1,8 @@
+groups:
+  - name: waste_detection
+    rules:
+      - alert: HighErrorRate
+        expr: ml_validation_errors_total > 10
+        for: 1m
+        labels: { severity: warning }
+        annotations: { summary: "High validation error rate" }

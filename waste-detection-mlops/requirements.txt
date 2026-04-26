@@ -1,0 +1,15 @@
+fastapi>=0.111
+uvicorn[standard]
+streamlit
+mlflow
+apache-airflow
+prometheus-client
+folium
+streamlit-folium
+ultralytics
+torch
+torchvision
+sqlite3
+pytest
+httpx
+python-multipart
