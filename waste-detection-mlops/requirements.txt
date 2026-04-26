@@ -9,7 +9,6 @@ streamlit-folium
 ultralytics
 torch
 torchvision
-sqlite3
 pytest
 httpx
 python-multipart

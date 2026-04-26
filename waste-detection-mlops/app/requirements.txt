@@ -1,0 +1,5 @@
+streamlit
+mlflow
+folium
+streamlit-folium
+requests

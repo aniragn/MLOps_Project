@@ -23,12 +23,14 @@ services:
     image: python:3.10-slim
     container_name: mlflow
     ports:
-      - "5000:5000"
+      - "5001:5000"
     volumes:
       - ./mlflow_data:/mlflow
     working_dir: /mlflow
+    environment:
+      - MLFLOW_ALLOWED_HOSTS=*
     command: >
-      bash -c "pip install mlflow &&
+      bash -c "pip install 'mlflow<3.0' &&
                mlflow server --host 0.0.0.0 --port 5000
                --backend-store-uri sqlite:///mlflow/mlflow.db
                --default-artifact-root /mlflow/artifacts"

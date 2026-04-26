@@ -1,0 +1,7 @@
+fastapi>=0.111
+uvicorn[standard]
+mlflow
+prometheus-client
+pytest
+httpx
+python-multipart

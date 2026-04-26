@@ -3,11 +3,16 @@ from streamlit_folium import st_folium
 from datetime import datetime
 
 API = "http://api:8000"
+VALID_MODELS = ["yolov8","yolo26","rtdetr","rtdetrv2","rfdetr","dfine","deim-dfine","fusion-model"]
 
 st.title("Waste Detection Dashboard")
 
-# Model selector fed by API
-models = [m["name"] for m in requests.get(f"{API}/models").json()]
+# Model selector fed by API, falls back to hardcoded list if MLflow not ready
+try:
+    api_models = [m["name"] for m in requests.get(f"{API}/models", timeout=3).json()]
+    models = api_models if api_models else VALID_MODELS
+except Exception:
+    models = VALID_MODELS
 model = st.selectbox("Select model", models)
 
 # Upload + GPS
