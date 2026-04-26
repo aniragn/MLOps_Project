@@ -1,12 +1,13 @@
-# Waste Detection MLOps — [Group Name]
+![CI](https://github.com/aniragn/project_mlops/waste-detection-mlops/actions/workflows/ci.yml/badge.svg)
+# Waste Detection MLOps — [Group: Anir AGOUNTAF - Muhammaad Hassaan Shafique]
 
 All the informations about project are in the project.md file
 
 **Based Repo**: https://github.com/sinaayyy/project_mlops
 
 
-**Members**: [First Last 1] · [First Last 2]
-**Repo**: `https://github.com/<your-repo>`
+**Members**: [Anir AGOUNTAF] · [Muhammaad Hassaan Shafique]
+**Repo**: https://github.com/aniragn/MLOps_Project.git`
 
 ![CI/CD](https://github.com/<your-repo>/actions/workflows/ci.yml/badge.svg)
 
@@ -17,7 +18,7 @@ All the informations about project are in the project.md file
 ## Setup
 
 ```bash
-git clone https://github.com/<your-repo>.git
+git clone https://github.com/aniragn/MLOps_Project.git
 cd waste-detection-mlops
 python generate_patrol_db.py
 ```
