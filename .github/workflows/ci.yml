@@ -1,4 +1,3 @@
-cat > .github/workflows/ci.yml << 'EOF'
 name: CI
 
 on:
@@ -51,7 +50,7 @@ jobs:
           IMAGE=ghcr.io/${{ github.repository }}/waste-api
           docker build -t $IMAGE:latest ./api
           docker push $IMAGE:latest
+          echo "IMAGE=$IMAGE:latest" >> $GITHUB_ENV
 
       - name: Verify image is pullable
         run: docker pull ghcr.io/${{ github.repository }}/waste-api:latest
-EOF
